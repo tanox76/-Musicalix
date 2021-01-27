@@ -32,7 +32,7 @@ function WelcomeScreen(props) {
         marginBottom:'10%',
         justifyContent: 'center',
         alignItems: 'center',}}>
-        < SignupButton title = "Sign Up" />      
+        < SignupButton title = "Sign Up"  />      
         < FacebookButton title = "Login with Facebook" onPress={() => { Linking.openURL('https://Facebook.com');} }/>
         < GoogleButton title = "Login with Google" onPress ={() => { Linking.openURL('https://accounts.google.com/signin/v2/identifier?passive=1209600&continue=https%3A%2F%2Faccounts.google.com%2F&followup=https%3A%2F%2Faccounts.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin');}}/>
         < GmailButton title = "Sign in with Email" onPress ={() => { Linking.openURL('https://www.google.com/intl/en-GB/gmail/about/#');}}/>
