@@ -41,14 +41,14 @@ export default function App() {
    });
 
    return (
-   //   <AuthContext.Provider value={{user, setUser}}>
-   //    {/* <OfflineNotice/> */}
-   //    <NavigationContainer ref={navigationRef} theme={ navigationTheme }>
-   //       {user ? <AppNavigator /> : <AuthNavigator />}
-   //    </NavigationContainer>
-   //    </AuthContext.Provider>
+     <AuthContext.Provider value={{user, setUser}}>
+      {/* <OfflineNotice/> */}
+      <NavigationContainer ref={navigationRef} theme={ navigationTheme }>
+         {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+      </AuthContext.Provider>
 
-      <MusicPlayer/>
+      // <MusicPlayer/>
   );
 }
 
