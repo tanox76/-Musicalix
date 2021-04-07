@@ -1,53 +1,53 @@
 import React from 'react';  
-import {View, StyleSheet, Image, Platform, Button} from 'react-native';
+import {View, StyleSheet, Platform, TouchableWithoutFeedback} from 'react-native';
+import { Image } from 'react-native-expo-image-cache';
 
 import colors from '../config/colors'
 import AppText from './AppText'
 
 
-function Card({name, profession, location, image}) {
+function Card({title, subTitle, imageUrl, onPress, thumbnailUrl}) {
     return (
-       <View style={styles.card}>
-           <Image style={styles.image} source={image}/>
-           <View style={styles.detailsContainer}>
-           <AppText style={styles.name}>{name}</AppText>
-           <AppText style={styles.profession}>{profession}</AppText>
-           <AppText style={styles.location}>{location}</AppText>
-           </View>
-       </View>
-    
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.card}>
+                <Image style={styles.image} tint="light" preview={{ uri: thumbnailUrl }}uri={imageUrl}/>
+                <View style={styles.detailsContainer}>
+                    <AppText style={styles.title} numberOfLines={3}>{title}</AppText>
+                    <AppText style={styles.subTitle} numberOfLines={2}>{subTitle}</AppText>
+                </View>
+            </View>
+       </TouchableWithoutFeedback>
     );
 }
 
 const styles = StyleSheet.create({
     card: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         borderRadius: 15,
         backgroundColor: colors.white,
         marginBottom: 5,
         overflow: 'hidden'
     },
     image: {
-        width: 200,
-        height: 200,
+        width: 100,
+        height: 100,
     },
     detailsContainer: {
         padding: Platform.OS === "android" ? 10 : 30,
-        paddingTop: 50
+        paddingTop: 50,
+        alignItems:'flex-start'
+        
     },
-    name: {
+    title: {
         marginBottom: 10,
-        fontWeight: 'bold',
-        color: colors.brightGold
+        // fontWeight: 'bold',
+        color: colors.battleshipGrey,
+        overflow:'visible'
     },
-    profession:{
+    subTitle:{
         marginBottom: 10,
         color: colors.sandyBrown,
         fontWeight: 'bold'
-    },
-    location: {
-        fontWeight: 'bold',
-        color: colors.coppeR,
     }
 })
 export default Card;
