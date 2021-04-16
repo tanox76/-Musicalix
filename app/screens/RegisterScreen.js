@@ -23,6 +23,8 @@ import useLocation from '../hooks/useLocation';
 import AppText from '../components/AppText';
 import defaultStyles from "../config/styles";
 
+
+
 const validationSchema = Yup.object().shape({
     name: Yup.string().required().label("Name"),
     email: Yup.string().required().email().label("Email"),
