@@ -1,6 +1,9 @@
 
 import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
+import firebase from '../../firebaseDB';
+import "../../app/global"
+
 
 import useAuth from '../auth/useAuth';
 import AppButton from '../components/AppButton';
@@ -9,17 +12,24 @@ import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
-const  menuItems = [
-    { 
+
+
+
+
+
+
+const menuItems = [
+    {
         title: "My Listings",
         icon: {
             name: "format-list-bulleted",
             backgroundColor: colors.black,
         }
     },
-    { 
+    {
         title: "My Messages",
         icon: {
             name: "email",
@@ -30,27 +40,32 @@ const  menuItems = [
 ]
 
 function ProfilePage({ navigation }) {
-    const { user, logOut } = useAuth();
+    //const { user, logOut } = useAuth();
 
+
+    //loadUser();
+    //RegisterScreen();
     return (
+
         <Screen style={styles.screen}>
-            <View style={styles.container}>
-                <ListItem
-                    title={user.name}
-                    subTitle={user.email}
-                    image={require('../assets/IMG_7650.png')}
-                />
-                <ListItem title="Location"/>
-            </View>
-            
-            
-            <ListItem title="Skill"/>
-            <ListItem title="Experience"/>
-            <ListItem title="Education"/>
-            <ListItem title="Music Genre"/>
-            <ListItem title="Instrument Played"/>
-            <ListItem title="Software Used"/>
-            {/* <View style={styles.container}>
+            <ScrollView>
+                <View style={styles.container}>
+                    <ListItem
+                        title={global.name}
+                        subTitle={global.email}
+                        image={require('../assets/IMG_7650.png')}
+                    />
+
+                </View>
+
+                <ListItem title="Location" subTitle={global.address} />
+                <ListItem title="Skill" subTitle={global.skill} />
+                <ListItem title="Experience" subTitle={global.experience} />
+                <ListItem title="Education" subTitle={global.education} />
+                <ListItem title="Music Genre" subTitle={global.genre} />
+                <ListItem title="Instrument Played" subTitle={global.instrument} />
+                <ListItem title="Software Used" subTitle={global.software} />
+                {/* <View style={styles.container}>
                 <FlatList 
                     data={menuItems}
                     keyExtractor={menuItem => menuItem.title}
@@ -66,28 +81,29 @@ function ProfilePage({ navigation }) {
                     }
                 />
             </View> */}
-            <View style={styles.logout}>
-                <AppButton
-                    title="Log Out"
-                    onPress={() => logOut()}
-                />
+                <View style={styles.logout}>
+                    <AppButton
+                        title="Log Out"
+                        onPress={() => navigation.navigate("Login")}
+                    />
 
-            </View>
+                </View>
+            </ScrollView>
         </Screen>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginVertical :25,
+        marginVertical: 25,
     },
-    screen:{
-        backgroundColor:colors.bgColor,
+    screen: {
+        backgroundColor: colors.bgColor,
     },
-    logout:{
+    logout: {
         marginTop: 20,
         padding: 10,
-        
+
     }
 })
 
